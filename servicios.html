@@ -1,280 +1,151 @@
-import React, { useState } from 'react';
-import { 
-  Phone, 
-  MessageCircle, 
-  CheckCircle2, 
-  ChevronRight, 
-  Home, 
-  ArrowLeft, 
-  CreditCard, 
-  Calendar, 
-  Users, 
-  FileText, 
-  User,
-  ShieldCheck,
-  MapPin,
-  Clock
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Christopher Bido - Asesoría Migratoria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .service-card:active { transform: scale(0.98); }
+        .bg-navy { background-color: #0f172a; }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .fade-in-right { animation: fadeInRight 0.4s ease-out; }
+    </style>
+</head>
+<body class="bg-slate-200 font-sans antialiased">
 
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  const profileData = {
-    name: "Prince Christopher Bido",
-    companyName: "Cristopher Pacheco Soluciones Migratorias SRL",
-    title: "Asesor Migratorio",
-    phone: "+1 (829) 782-6451",
-    whatsappLink: "https://wa.me/18297826451",
-    
-    // URL de la foto actualizada según tu archivo más reciente
-    photoUrl: "https://photos.fife.usercontent.google.com/pw/AP1GczO2d7F4uLnVcpX4XrL5O06PaN5vEXqodtQWm6pWlTQZ4RvIQTXzRqRQmQ=w878-h878-s-no-gm?authuser=0", 
-    
-    services: [
-      {
-        id: 'visa-b1b2',
-        title: 'Gestión de Visa de Turismo B1/B2',
-        description: 'Servicio integral para solicitudes de visa de no inmigrante hacia los Estados Unidos, asegurando el cumplimiento de todas las normativas consulares.',
-        icon: <CreditCard className="w-6 h-6" />,
-        details: [
-          "Asesoría técnica en formulario DS-160",
-          "Gestión de citas y pagos consulares",
-          "Preparación estratégica para entrevista",
-          "Revisión y organización de documentos"
-        ]
-      },
-      {
-        id: 'citas',
-        title: 'Agilización de Citas Consulares',
-        description: 'Optimización de tiempos de espera mediante monitoreo constante para el adelantado de citas en el sistema consular.',
-        icon: <Calendar className="w-6 h-6" />,
-        details: [
-          "Monitoreo 24/7 de disponibilidad",
-          "Gestión de reprogramación inmediata",
-          "Apoyo en solicitudes de emergencia",
-          "Seguimiento personalizado de fechas"
-        ]
-      },
-      {
-        id: 'residencia',
-        title: 'Residencia y Reunificación Familiar',
-        description: 'Acompañamiento legal en procesos de residencia (Visa RS + RT-9) para la unión de familias en el extranjero.',
-        icon: <Users className="w-6 h-6" />,
-        details: [
-          "Peticiones de familiares directos",
-          "Carga de documentos en plataforma NVC",
-          "Asesoría en Afidávit de Sostenimiento",
-          "Preparación para el examen médico"
-        ]
-      },
-      {
-        id: 'pasaporte',
-        title: 'Pasaporte Dominicano Electrónico',
-        description: 'Tramitación y renovación de pasaportes con altos estándares de seguridad y tecnología biométrica.',
-        icon: <FileText className="w-6 h-6" />,
-        details: [
-          "Citas para renovación y primera vez",
-          "Gestión de entrega prioritaria (VIP)",
-          "Trámites especiales para menores",
-          "Validación de actas de nacimiento"
-        ]
-      }
-    ]
-  };
-
-  const RenderHome = () => (
-    <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-      <div className="bg-slate-900 pt-12 pb-16 px-6 text-center border-b-4 border-blue-600">
-        <div className="mb-6 inline-block relative">
-          <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-slate-800">
-            {profileData.photoUrl ? (
-              <img src={profileData.photoUrl} alt={profileData.name} className="w-full h-full object-cover" />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-500">
-                <User size={64} />
-              </div>
-            )}
-          </div>
-          <div className="absolute bottom-1 right-1 bg-blue-600 p-1.5 rounded-full border-2 border-white shadow-sm">
-            <ShieldCheck size={16} className="text-white" />
-          </div>
-        </div>
+    <div id="app" class="max-w-md mx-auto bg-white min-h-screen shadow-2xl flex flex-col relative overflow-x-hidden">
         
-        <h1 className="text-2xl font-bold text-white tracking-tight">
-          {profileData.name}
-        </h1>
-        <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mt-1">
-          {profileData.title}
-        </p>
-        <div className="mt-4 inline-flex items-center gap-2 px-4 py-1.5 bg-slate-800 rounded border border-slate-700">
-          <span className="text-[11px] text-slate-300 font-bold uppercase tracking-wider">
-            {profileData.companyName}
-          </span>
-        </div>
-      </div>
-
-      <div className="px-6 py-10 bg-slate-50">
-        <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
-          Servicios Especializados
-          <div className="flex-1 h-px bg-slate-200"></div>
-        </h3>
-        
-        <div className="space-y-3">
-          {profileData.services.map((service) => (
-            <button
-              key={service.id}
-              onClick={() => { window.scrollTo(0,0); setCurrentPage(service.id); }}
-              className="w-full bg-white rounded-xl p-5 border border-slate-200 flex items-center justify-between shadow-sm hover:shadow-md hover:border-blue-300 transition-all active:scale-[0.99] text-left group"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                  {service.icon}
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 text-sm sm:text-base">{service.title}</h3>
-                  <p className="text-[10px] text-blue-600 font-bold uppercase mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles</p>
-                </div>
-              </div>
-              <ChevronRight size={18} className="text-slate-300 group-hover:text-blue-600 transition-colors" />
+        <!-- HEADER -->
+        <header class="px-6 py-4 bg-white border-b flex items-center justify-between sticky top-0 z-50">
+            <div class="flex flex-col">
+                <span class="font-black text-slate-900 text-xs tracking-tighter uppercase leading-none">Cristopher Pacheco</span>
+                <span class="text-[9px] text-blue-600 font-bold uppercase tracking-[0.15em] mt-1 leading-none">Soluciones Migratorias SRL</span>
+            </div>
+            <button onclick="showHome()" id="home-btn" class="hidden text-slate-400 hover:text-blue-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </button>
-          ))}
-        </div>
-
-        <div className="mt-10 bg-white border-2 border-slate-900 rounded-2xl p-8 text-center shadow-lg">
-          <h4 className="text-xl font-bold text-slate-900 mb-2">Asesoría de Confianza</h4>
-          <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-            Gestione su proceso con profesionalidad, transparencia y resultados garantizados.
-          </p>
-          
-          <div className="space-y-4">
-            <a 
-              href={profileData.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold shadow-md transition-all active:scale-95"
-            >
-              <MessageCircle size={22} />
-              Contactar por WhatsApp
-            </a>
-            <div className="flex items-center justify-center gap-2 text-slate-500 text-sm font-semibold">
-              <Phone size={14} className="text-blue-600" />
-              {profileData.phone}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const RenderServiceDetail = (serviceId) => {
-    const service = profileData.services.find(s => s.id === serviceId);
-    if (!service) return null;
-
-    return (
-      <div className="animate-in fade-in slide-in-from-right-4 duration-400 bg-white min-h-screen">
-        <div className="p-4 border-b bg-slate-50 sticky top-0 z-10 flex items-center justify-between">
-          <button 
-            onClick={() => setCurrentPage('home')}
-            className="flex items-center gap-2 text-slate-600 font-bold text-sm hover:text-blue-600 transition-colors"
-          >
-            <ArrowLeft size={18} /> Volver
-          </button>
-          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Información de Servicio</span>
-        </div>
-
-        <div className="p-8">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg">
-              {service.icon}
-            </div>
-            <h2 className="text-2xl font-bold text-slate-900 leading-tight">{service.title}</h2>
-          </div>
-
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 mb-8">
-            <p className="text-slate-700 leading-relaxed font-medium">
-              {service.description}
-            </p>
-          </div>
-
-          <div className="space-y-6 mb-12">
-            <h5 className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-600 border-b border-blue-100 pb-2">Componentes del Servicio</h5>
-            <div className="grid gap-5">
-              {service.details.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className="mt-1 text-green-600 flex-shrink-0">
-                    <CheckCircle2 size={18} />
-                  </div>
-                  <span className="text-slate-700 font-semibold leading-snug">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-slate-900 rounded-2xl p-8 text-white text-center shadow-2xl">
-            <p className="text-blue-300 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Inicie su solicitud hoy</p>
-            <a 
-              href={profileData.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-xl font-bold transition-all active:scale-95 shadow-lg"
-            >
-              <MessageCircle size={22} />
-              Solicitar Asesoría
-            </a>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-200 font-sans antialiased flex justify-center">
-      <div className="w-full max-w-md bg-white min-h-screen shadow-2xl relative flex flex-col overflow-x-hidden">
-        
-        <header className="px-6 py-4 bg-white border-b flex items-center justify-between sticky top-0 z-50 backdrop-blur-sm bg-white/95">
-          <div className="flex flex-col">
-            <span className="font-black text-slate-900 text-xs tracking-tighter uppercase leading-none">Cristopher Pacheco</span>
-            <span className="text-[9px] text-blue-600 font-bold uppercase tracking-[0.15em] mt-1 leading-none">Soluciones Migratorias SRL</span>
-          </div>
-          {currentPage !== 'home' && (
-            <button onClick={() => setCurrentPage('home')} className="text-slate-400 hover:text-blue-600 transition-colors p-1">
-              <Home size={20} />
-            </button>
-          )}
         </header>
 
-        <main className="flex-grow">
-          {currentPage === 'home' ? <RenderHome /> : RenderServiceDetail(currentPage)}
-        </main>
+        <div id="main-content">
+            <!-- HOME VIEW -->
+            <div id="home-view" class="animate__animated animate__fadeIn">
+                <div class="bg-navy pt-12 pb-16 px-6 text-center border-b-4 border-blue-600">
+                    <div class="mb-6 inline-block relative">
+                        <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-slate-800">
+                            
+                            <!-- ============================================= -->
+                            <!-- CAMBIA TU FOTO AQUÍ ABAJO (src) -->
+                            <!-- ============================================= -->
+                            <img src="https://photos.fife.usercontent.google.com/pw/AP1GczO2d7F4uLnVcpX4XrL5O06PaN5vEXqodtQWm6pWlTQZ4RvIQTXzRqRQmQ=w878-h878-s-no-gm?authuser=" 
+                                 alt="Profile" class="w-full h-full object-cover" id="profile-img">
+                            <!-- ============================================= -->
 
-        <footer className="p-10 bg-slate-50 border-t text-center">
-          <div className="mb-8">
-            <p className="font-black text-slate-900 text-lg tracking-tight mb-1">{profileData.name}</p>
-            <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest">{profileData.title}</p>
-          </div>
+                        </div>
+                        <div class="absolute bottom-1 right-1 bg-blue-600 p-1.5 rounded-full border-2 border-white">
+                            <svg class="text-white" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Prince Christopher Bido</h1>
+                    <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mt-1">Asesor Migratorio</p>
+                    <div class="mt-4 inline-flex items-center px-4 py-1.5 bg-slate-800 rounded border border-slate-700">
+                        <span class="text-[11px] text-slate-300 font-bold uppercase tracking-wider">Cristopher Pacheco Soluciones Migratorias SRL</span>
+                    </div>
+                </div>
 
-          <div className="flex flex-col gap-4 text-slate-500 text-[10px] font-bold uppercase tracking-[0.1em] mb-10">
-            <div className="flex items-center justify-center gap-2">
-              <MapPin size={14} className="text-blue-600" />
-              Santo Domingo, República Dominicana
+                <div class="px-6 py-10 bg-slate-50">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+                        Servicios Especializados
+                        <div class="flex-1 h-px bg-slate-200"></div>
+                    </h3>
+                    
+                    <div class="space-y-3" id="services-list">
+                        <!-- Generado por JS -->
+                    </div>
+
+                    <div class="mt-10 bg-white border-2 border-slate-900 rounded-2xl p-8 text-center shadow-lg">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Asesoría de Confianza</h4>
+                        <p class="text-slate-600 text-sm mb-6">Profesionalidad, transparencia y resultados garantizados.</p>
+                        <a href="https://wa.me/18297826451" target="_blank" class="flex items-center justify-center gap-3 bg-green-600 text-white py-4 rounded-xl font-bold shadow-md">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L21 3z"/></svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <div className="flex justify-center gap-4 mb-10">
-            <a href={`tel:${profileData.phone}`} className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm hover:border-blue-300 hover:text-blue-600 transition-all">
-              <Phone size={20} />
-            </a>
-            <a href={profileData.whatsappLink} className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm hover:border-green-300 hover:text-green-600 transition-all">
-              <MessageCircle size={20} />
-            </a>
-          </div>
-          
-          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-[0.25em] pt-8 border-t border-slate-200">
-            © 2026 
-          </p>
-        </footer>
-      </div>
-    </div>
-  );
-};
 
-export default App;
+            <!-- DETAIL VIEW -->
+            <div id="detail-view" class="hidden fade-in-right bg-white min-h-screen">
+                <div id="detail-content"></div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="p-10 bg-slate-50 border-t text-center">
+            <p class="font-black text-slate-900 text-lg mb-1">Prince Christopher Bido</p>
+            <p class="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-6">Asesor Migratorio</p>
+            <div class="text-slate-500 text-[10px] font-bold uppercase tracking-widest space-y-2 mb-8">
+                <p>📍 Santo Domingo, R.D.</p>
+                <p>⏰ Cita previa requerida</p>
+            </div>
+            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-[0.25em] pt-8 border-t border-slate-200">© 2026 • Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        const services = [
+            { id: 'visa', title: 'Visa de Turismo B1/B2', desc: 'Gestión completa de formulario DS-160, citas y preparación.', icon: '💳', items: ['Formulario DS-160', 'Gestión de citas', 'Simulacro de entrevista'] },
+            { id: 'citas', title: 'Agilización de Citas', desc: 'Monitoreo constante para adelantar su cita consular.', icon: '📅', items: ['Monitoreo 24/7', 'Reprogramación rápida', 'Alertas de cupos'] },
+            { id: 'residencia', title: 'Residencia Familiar', desc: 'Procesos de reunificación y residencia (Visa RS).', icon: '👥', items: ['Peticiones familiares', 'Plataforma NVC', 'Afidávit de Sostenimiento'] },
+            { id: 'pasaporte', title: 'Pasaporte Dominicano', desc: 'Renovación y trámites de pasaporte electrónico.', icon: '📄', items: ['Citas VIP', 'Renovaciones', 'Validación de actas'] }
+        ];
+
+        function showHome() {
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('detail-view').classList.add('hidden');
+            document.getElementById('home-btn').classList.add('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function showDetail(id) {
+            const s = services.find(x => x.id === id);
+            const content = `
+                <div class="p-8">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-lg">${s.icon}</div>
+                        <h2 class="text-2xl font-bold text-slate-900">${s.title}</h2>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100"><p class="text-slate-700">${s.desc}</p></div>
+                    <div class="space-y-4 mb-10">
+                        <h5 class="text-[11px] font-black uppercase text-blue-600 border-b pb-2">Incluye:</h5>
+                        ${s.items.map(i => `<div class="flex items-center gap-3 text-slate-700 font-semibold">✅ <span>${i}</span></div>`).join('')}
+                    </div>
+                    <div class="bg-slate-900 rounded-2xl p-6 text-white text-center">
+                        <a href="https://wa.me/18297826451" class="bg-green-600 block py-4 rounded-xl font-bold">Solicitar Asesoría</a>
+                    </div>
+                </div>`;
+            document.getElementById('detail-content').innerHTML = content;
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('detail-view').classList.remove('hidden');
+            document.getElementById('home-btn').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        const list = document.getElementById('services-list');
+        services.forEach(s => {
+            list.innerHTML += `
+                <button onclick="showDetail('${s.id}')" class="w-full bg-white rounded-xl p-5 border border-slate-200 flex items-center justify-between shadow-sm service-card text-left">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-50 text-xl flex items-center justify-center rounded-lg">${s.icon}</div>
+                        <div><h3 class="font-bold text-slate-800">${s.title}</h3><p class="text-[10px] text-blue-600 font-bold uppercase mt-0.5">Ver detalles</p></div>
+                    </div>
+                    <span class="text-slate-300">➜</span>
+                </button>`;
+        });
+    </script>
+</body>
+</html>
