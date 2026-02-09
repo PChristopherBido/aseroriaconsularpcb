@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
-import { Phone, MessageCircle, CheckCircle, ChevronRight, Home, ArrowLeft, CreditCard, Calendar, Users, FileText, User } from 'lucide-react';
+import { 
+  Phone, 
+  MessageCircle, 
+  CheckCircle2, 
+  ChevronRight, 
+  Home, 
+  ArrowLeft, 
+  CreditCard, 
+  Calendar, 
+  Users, 
+  FileText, 
+  User,
+  ShieldCheck,
+  MapPin,
+  Clock
+} from 'lucide-react';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -10,210 +25,201 @@ const App = () => {
     title: "Asesor Migratorio",
     phone: "+1 (829) 782-6451",
     whatsappLink: "https://wa.me/18297826451",
-    // Puedes reemplazar esta URL por la de tu foto real
-    photoUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200", 
+    
+    // URL de la foto actualizada según tu archivo más reciente
+    photoUrl: "https://photos.fife.usercontent.google.com/pw/AP1GczO2d7F4uLnVcpX4XrL5O06PaN5vEXqodtQWm6pWlTQZ4RvIQTXzRqRQmQ=w878-h878-s-no-gm?authuser=0", 
+    
     services: [
       {
         id: 'visa-b1b2',
         title: 'Gestión de Visa de Turismo B1/B2',
-        description: 'Asesoría completa para la solicitud de visa de no inmigrante para viajes temporales a los Estados Unidos por negocios o turismo.',
-        icon: <CreditCard className="w-8 h-8" />,
+        description: 'Servicio integral para solicitudes de visa de no inmigrante hacia los Estados Unidos, asegurando el cumplimiento de todas las normativas consulares.',
+        icon: <CreditCard className="w-6 h-6" />,
         details: [
-          "Llenado de formulario DS-160",
-          "Creación de perfil consular",
-          "Preparación para la entrevista",
-          "Asesoría en documentos de soporte"
+          "Asesoría técnica en formulario DS-160",
+          "Gestión de citas y pagos consulares",
+          "Preparación estratégica para entrevista",
+          "Revisión y organización de documentos"
         ]
       },
       {
         id: 'citas',
-        title: 'Reagendado de Citas Consulares',
-        description: 'Servicio especializado para adelantar o gestionar fechas de citas en la sección consular de manera eficiente.',
-        icon: <Calendar className="w-8 h-8" />,
+        title: 'Agilización de Citas Consulares',
+        description: 'Optimización de tiempos de espera mediante monitoreo constante para el adelantado de citas en el sistema consular.',
+        icon: <Calendar className="w-6 h-6" />,
         details: [
-          "Monitoreo constante de disponibilidad",
-          "Gestión rápida de cambios",
-          "Notificaciones en tiempo real",
-          "Optimización de tiempos de espera"
+          "Monitoreo 24/7 de disponibilidad",
+          "Gestión de reprogramación inmediata",
+          "Apoyo en solicitudes de emergencia",
+          "Seguimiento personalizado de fechas"
         ]
       },
       {
         id: 'residencia',
-        title: 'Residencia por Reunificación Familiar',
-        description: 'Procesamiento de Visas RS + RT-9 para unir familias en el extranjero mediante peticiones legales.',
-        icon: <Users className="w-8 h-8" />,
+        title: 'Residencia y Reunificación Familiar',
+        description: 'Acompañamiento legal en procesos de residencia (Visa RS + RT-9) para la unión de familias en el extranjero.',
+        icon: <Users className="w-6 h-6" />,
         details: [
           "Peticiones de familiares directos",
-          "Seguimiento de caso NVC",
-          "Preparación de paquetes de residencia",
-          "Guía paso a paso en el proceso legal"
+          "Carga de documentos en plataforma NVC",
+          "Asesoría en Afidávit de Sostenimiento",
+          "Preparación para el examen médico"
         ]
       },
       {
         id: 'pasaporte',
         title: 'Pasaporte Dominicano Electrónico',
-        description: 'Trámite y renovación de pasaportes con tecnología electrónica para ciudadanos dominicanos.',
-        icon: <FileText className="w-8 h-8" />,
+        description: 'Tramitación y renovación de pasaportes con altos estándares de seguridad y tecnología biométrica.',
+        icon: <FileText className="w-6 h-6" />,
         details: [
-          "Gestión de citas de renovación",
-          "Asesoría en requisitos",
-          "Trámite por primera vez",
-          "Pasaportes VIP y normales"
+          "Citas para renovación y primera vez",
+          "Gestión de entrega prioritaria (VIP)",
+          "Trámites especiales para menores",
+          "Validación de actas de nacimiento"
         ]
       }
     ]
   };
 
-  const renderHome = () => (
-    <div className="animate-fade-in">
-      {/* Hero Section */}
-      <div className="relative py-12 bg-blue-900 overflow-hidden flex flex-col items-center justify-center text-center">
-        {/* Abstract Background */}
-        <div className="absolute inset-0 opacity-10 flex flex-col">
-          <div className="flex-1 bg-blue-600"></div>
-          <div className="flex-1 bg-red-600"></div>
+  const RenderHome = () => (
+    <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+      <div className="bg-slate-900 pt-12 pb-16 px-6 text-center border-b-4 border-blue-600">
+        <div className="mb-6 inline-block relative">
+          <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-slate-800">
+            {profileData.photoUrl ? (
+              <img src={profileData.photoUrl} alt={profileData.name} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-slate-500">
+                <User size={64} />
+              </div>
+            )}
+          </div>
+          <div className="absolute bottom-1 right-1 bg-blue-600 p-1.5 rounded-full border-2 border-white shadow-sm">
+            <ShieldCheck size={16} className="text-white" />
+          </div>
         </div>
         
-        <div className="relative z-10 px-6 flex flex-col items-center">
-          {/* Foto de Perfil */}
-          <div className="mb-4 relative">
-            <div className="w-28 h-28 rounded-full border-4 border-white shadow-2xl overflow-hidden bg-gray-200">
-              {profileData.photoUrl ? (
-                <img 
-                  src={profileData.photoUrl} 
-                  alt={profileData.name} 
-                  className="w-full h-full object-cover"
-                  onError={(e) => { e.target.src = 'https://via.placeholder.com/200?text=Foto'; }}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <User size={48} />
-                </div>
-              )}
-            </div>
-            <div className="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full"></div>
-          </div>
-
-          <h1 className="text-white text-xs font-bold mb-1 opacity-80 uppercase tracking-[0.2em]">
+        <h1 className="text-2xl font-bold text-white tracking-tight">
+          {profileData.name}
+        </h1>
+        <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mt-1">
+          {profileData.title}
+        </p>
+        <div className="mt-4 inline-flex items-center gap-2 px-4 py-1.5 bg-slate-800 rounded border border-slate-700">
+          <span className="text-[11px] text-slate-300 font-bold uppercase tracking-wider">
             {profileData.companyName}
-          </h1>
-          <h2 className="text-3xl font-extrabold text-white mb-3 drop-shadow-md tracking-tight">
-            {profileData.name}
-          </h2>
-          <div className="bg-red-600 text-white py-1 px-5 inline-block font-bold rounded-full shadow-lg text-xs uppercase tracking-widest border border-red-500">
-            {profileData.title}
-          </div>
+          </span>
         </div>
       </div>
 
-      {/* Services Section */}
-      <div className="p-6 -mt-6">
-        <div className="bg-white rounded-3xl shadow-2xl p-6 mb-8 border border-gray-100 relative z-20">
-          <h3 className="text-lg font-black text-gray-800 mb-6 flex items-center gap-2 uppercase tracking-tight">
-            <span className="w-1.5 h-5 bg-blue-600 rounded-full inline-block"></span>
-            Nuestros Servicios
-          </h3>
-          <div className="grid grid-cols-1 gap-4">
-            {profileData.services.map((service) => (
-              <button
-                key={service.id}
-                onClick={() => {
-                    window.scrollTo(0,0);
-                    setCurrentPage(service.id);
-                }}
-                className="flex items-center p-4 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-all border border-gray-100 group text-left active:scale-[0.98] shadow-sm"
-              >
-                <div className="bg-white p-3 rounded-xl shadow-sm text-blue-600 mr-4 group-hover:scale-110 transition-transform border border-gray-50">
+      <div className="px-6 py-10 bg-slate-50">
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+          Servicios Especializados
+          <div className="flex-1 h-px bg-slate-200"></div>
+        </h3>
+        
+        <div className="space-y-3">
+          {profileData.services.map((service) => (
+            <button
+              key={service.id}
+              onClick={() => { window.scrollTo(0,0); setCurrentPage(service.id); }}
+              className="w-full bg-white rounded-xl p-5 border border-slate-200 flex items-center justify-between shadow-sm hover:shadow-md hover:border-blue-300 transition-all active:scale-[0.99] text-left group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
                   {service.icon}
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-gray-800 group-hover:text-blue-700 leading-tight">{service.title}</h3>
-                  <p className="text-[10px] text-blue-500 font-bold uppercase mt-1 tracking-wider">Ver más detalles</p>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm sm:text-base">{service.title}</h3>
+                  <p className="text-[10px] text-blue-600 font-bold uppercase mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles</p>
                 </div>
-                <ChevronRight size={18} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
-              </button>
-            ))}
-          </div>
+              </div>
+              <ChevronRight size={18} className="text-slate-300 group-hover:text-blue-600 transition-colors" />
+            </button>
+          ))}
         </div>
 
-        {/* Home Contact CTA */}
-        <div className="bg-gradient-to-br from-blue-800 to-blue-950 rounded-3xl p-8 text-white text-center shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
-          <h3 className="text-2xl font-bold mb-2 tracking-tight">¿Iniciamos tu proceso?</h3>
-          <p className="mb-6 text-blue-200 text-sm leading-relaxed">Agenda tu consulta hoy con expertos en leyes migratorias.</p>
-          <a
-            href={profileData.whatsappLink}
-            className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transition-all active:scale-95 w-full justify-center text-lg"
-          >
-            <MessageCircle size={24} />
-            Contactar por WhatsApp
-          </a>
+        <div className="mt-10 bg-white border-2 border-slate-900 rounded-2xl p-8 text-center shadow-lg">
+          <h4 className="text-xl font-bold text-slate-900 mb-2">Asesoría de Confianza</h4>
+          <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+            Gestione su proceso con profesionalidad, transparencia y resultados garantizados.
+          </p>
+          
+          <div className="space-y-4">
+            <a 
+              href={profileData.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold shadow-md transition-all active:scale-95"
+            >
+              <MessageCircle size={22} />
+              Contactar por WhatsApp
+            </a>
+            <div className="flex items-center justify-center gap-2 text-slate-500 text-sm font-semibold">
+              <Phone size={14} className="text-blue-600" />
+              {profileData.phone}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 
-  const renderServicePage = (serviceId) => {
+  const RenderServiceDetail = (serviceId) => {
     const service = profileData.services.find(s => s.id === serviceId);
     if (!service) return null;
 
     return (
-      <div className="animate-fade-in pb-20">
-        <div className="px-4 py-4">
-            <button 
+      <div className="animate-in fade-in slide-in-from-right-4 duration-400 bg-white min-h-screen">
+        <div className="p-4 border-b bg-slate-50 sticky top-0 z-10 flex items-center justify-between">
+          <button 
             onClick={() => setCurrentPage('home')}
-            className="flex items-center gap-2 text-blue-600 font-bold hover:bg-blue-50 px-4 py-2 rounded-xl transition-colors"
-            >
-            <ArrowLeft size={20} /> Volver
-            </button>
+            className="flex items-center gap-2 text-slate-600 font-bold text-sm hover:text-blue-600 transition-colors"
+          >
+            <ArrowLeft size={18} /> Volver
+          </button>
+          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Información de Servicio</span>
         </div>
 
-        <div className="p-6">
-          <div className="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden">
-            <div className="bg-blue-600 p-10 text-white text-center relative">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                    <div className="absolute top-4 left-4">{service.icon}</div>
-                    <div className="absolute bottom-4 right-4">{service.icon}</div>
-                </div>
-                <div className="bg-white/20 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 backdrop-blur-md shadow-inner">
-                    {service.icon}
-                </div>
-                <h2 className="text-3xl font-black leading-tight tracking-tight">{service.title}</h2>
+        <div className="p-8">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg">
+              {service.icon}
             </div>
+            <h2 className="text-2xl font-bold text-slate-900 leading-tight">{service.title}</h2>
+          </div>
 
-            <div className="p-8">
-                <p className="text-gray-600 text-lg mb-8 leading-relaxed font-medium">
-                {service.description}
-                </p>
+          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 mb-8">
+            <p className="text-slate-700 leading-relaxed font-medium">
+              {service.description}
+            </p>
+          </div>
 
-                <div className="mb-10">
-                    <h3 className="text-[10px] uppercase tracking-[0.2em] font-black text-blue-600 mb-6 flex items-center gap-2">
-                        Puntos Clave
-                        <div className="flex-1 h-px bg-blue-100"></div>
-                    </h3>
-                    <ul className="space-y-5">
-                    {service.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-start gap-4 group">
-                        <div className="bg-green-100 text-green-600 p-1.5 rounded-xl mt-0.5 group-hover:bg-green-500 group-hover:text-white transition-colors">
-                            <CheckCircle size={16} />
-                        </div>
-                        <span className="text-gray-700 font-semibold leading-snug">{detail}</span>
-                        </li>
-                    ))}
-                    </ul>
+          <div className="space-y-6 mb-12">
+            <h5 className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-600 border-b border-blue-100 pb-2">Componentes del Servicio</h5>
+            <div className="grid gap-5">
+              {service.details.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-4">
+                  <div className="mt-1 text-green-600 flex-shrink-0">
+                    <CheckCircle2 size={18} />
+                  </div>
+                  <span className="text-slate-700 font-semibold leading-snug">{item}</span>
                 </div>
-
-                <div className="bg-blue-50 rounded-3xl p-8 border border-blue-100 text-center">
-                    <p className="text-blue-900 font-bold mb-4">¿Dudas sobre este trámite?</p>
-                    <a
-                        href={profileData.whatsappLink}
-                        className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-2xl shadow-lg w-full justify-center transition-all hover:-translate-y-1 active:scale-95"
-                    >
-                        <MessageCircle size={24} />
-                        Consultar ahora
-                    </a>
-                </div>
+              ))}
             </div>
+          </div>
+
+          <div className="bg-slate-900 rounded-2xl p-8 text-white text-center shadow-2xl">
+            <p className="text-blue-300 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Inicie su solicitud hoy</p>
+            <a 
+              href={profileData.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-xl font-bold transition-all active:scale-95 shadow-lg"
+            >
+              <MessageCircle size={22} />
+              Solicitar Asesoría
+            </a>
           </div>
         </div>
       </div>
@@ -221,59 +227,52 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 font-sans text-gray-900">
-      <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative flex flex-col">
+    <div className="min-h-screen bg-slate-200 font-sans antialiased flex justify-center">
+      <div className="w-full max-w-md bg-white min-h-screen shadow-2xl relative flex flex-col overflow-x-hidden">
         
-        {/* Navigation Top */}
-        <header className="bg-white/95 backdrop-blur-md sticky top-0 z-50 p-5 border-b flex justify-between items-center shadow-sm">
+        <header className="px-6 py-4 bg-white border-b flex items-center justify-between sticky top-0 z-50 backdrop-blur-sm bg-white/95">
           <div className="flex flex-col">
-            <span className="font-black text-blue-900 leading-none text-sm tracking-tighter uppercase">Cristopher Pacheco</span>
-            <span className="text-[9px] text-gray-400 font-black uppercase tracking-[0.15em] mt-1">Soluciones Migratorias SRL</span>
+            <span className="font-black text-slate-900 text-xs tracking-tighter uppercase leading-none">Cristopher Pacheco</span>
+            <span className="text-[9px] text-blue-600 font-bold uppercase tracking-[0.15em] mt-1 leading-none">Soluciones Migratorias SRL</span>
           </div>
           {currentPage !== 'home' && (
-            <button onClick={() => setCurrentPage('home')} className="p-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors">
+            <button onClick={() => setCurrentPage('home')} className="text-slate-400 hover:text-blue-600 transition-colors p-1">
               <Home size={20} />
             </button>
           )}
         </header>
 
         <main className="flex-grow">
-          {currentPage === 'home' ? renderHome() : renderServicePage(currentPage)}
+          {currentPage === 'home' ? <RenderHome /> : RenderServiceDetail(currentPage)}
         </main>
 
-        {/* Footer */}
-        <footer className="p-10 text-center bg-slate-900 text-white mt-auto">
-          <div className="mb-8 flex flex-col items-center">
-            <div className="w-12 h-1 bg-blue-500 mb-6 rounded-full"></div>
-            <p className="font-black text-2xl tracking-tight mb-1">{profileData.name}</p>
-            <p className="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em]">{profileData.title}</p>
+        <footer className="p-10 bg-slate-50 border-t text-center">
+          <div className="mb-8">
+            <p className="font-black text-slate-900 text-lg tracking-tight mb-1">{profileData.name}</p>
+            <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest">{profileData.title}</p>
+          </div>
+
+          <div className="flex flex-col gap-4 text-slate-500 text-[10px] font-bold uppercase tracking-[0.1em] mb-10">
+            <div className="flex items-center justify-center gap-2">
+              <MapPin size={14} className="text-blue-600" />
+              Santo Domingo, República Dominicana
+            </div>
           </div>
           
           <div className="flex justify-center gap-4 mb-10">
-            <a href={`tel:${profileData.phone}`} className="w-14 h-14 flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-2xl transition-all border border-white/10 active:scale-90">
-              <Phone size={22} />
+            <a href={`tel:${profileData.phone}`} className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm hover:border-blue-300 hover:text-blue-600 transition-all">
+              <Phone size={20} />
             </a>
-            <a href={profileData.whatsappLink} className="w-14 h-14 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded-2xl transition-all shadow-lg shadow-green-900/20 active:scale-90">
-              <MessageCircle size={22} />
+            <a href={profileData.whatsappLink} className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm hover:border-green-300 hover:text-green-600 transition-all">
+              <MessageCircle size={20} />
             </a>
           </div>
           
-          <div className="space-y-2 opacity-40">
-            <p className="text-[9px] font-bold uppercase tracking-widest leading-none">{profileData.companyName}</p>
-            <p className="text-[8px] font-medium uppercase tracking-[0.3em]">República Dominicana • 2024</p>
-          </div>
+          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-[0.25em] pt-8 border-t border-slate-200">
+            © 2026 
+          </p>
         </footer>
       </div>
-
-      <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-      `}</style>
     </div>
   );
 };
