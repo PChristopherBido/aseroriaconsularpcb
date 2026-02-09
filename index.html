@@ -108,7 +108,7 @@
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('detail-view').classList.add('hidden');
             document.getElementById('home-btn').classList.add('hidden');
-            window.scrollTo(0,0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function showDetail(id) {
