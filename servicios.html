@@ -1,0 +1,281 @@
+import React, { useState } from 'react';
+import { Phone, MessageCircle, CheckCircle, ChevronRight, Home, ArrowLeft, CreditCard, Calendar, Users, FileText, User } from 'lucide-react';
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const profileData = {
+    name: "Prince Christopher Bido",
+    companyName: "Cristopher Pacheco Soluciones Migratorias SRL",
+    title: "Asesor Migratorio",
+    phone: "+1 (829) 782-6451",
+    whatsappLink: "https://wa.me/18297826451",
+    // Puedes reemplazar esta URL por la de tu foto real
+    photoUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200", 
+    services: [
+      {
+        id: 'visa-b1b2',
+        title: 'Gestión de Visa de Turismo B1/B2',
+        description: 'Asesoría completa para la solicitud de visa de no inmigrante para viajes temporales a los Estados Unidos por negocios o turismo.',
+        icon: <CreditCard className="w-8 h-8" />,
+        details: [
+          "Llenado de formulario DS-160",
+          "Creación de perfil consular",
+          "Preparación para la entrevista",
+          "Asesoría en documentos de soporte"
+        ]
+      },
+      {
+        id: 'citas',
+        title: 'Reagendado de Citas Consulares',
+        description: 'Servicio especializado para adelantar o gestionar fechas de citas en la sección consular de manera eficiente.',
+        icon: <Calendar className="w-8 h-8" />,
+        details: [
+          "Monitoreo constante de disponibilidad",
+          "Gestión rápida de cambios",
+          "Notificaciones en tiempo real",
+          "Optimización de tiempos de espera"
+        ]
+      },
+      {
+        id: 'residencia',
+        title: 'Residencia por Reunificación Familiar',
+        description: 'Procesamiento de Visas RS + RT-9 para unir familias en el extranjero mediante peticiones legales.',
+        icon: <Users className="w-8 h-8" />,
+        details: [
+          "Peticiones de familiares directos",
+          "Seguimiento de caso NVC",
+          "Preparación de paquetes de residencia",
+          "Guía paso a paso en el proceso legal"
+        ]
+      },
+      {
+        id: 'pasaporte',
+        title: 'Pasaporte Dominicano Electrónico',
+        description: 'Trámite y renovación de pasaportes con tecnología electrónica para ciudadanos dominicanos.',
+        icon: <FileText className="w-8 h-8" />,
+        details: [
+          "Gestión de citas de renovación",
+          "Asesoría en requisitos",
+          "Trámite por primera vez",
+          "Pasaportes VIP y normales"
+        ]
+      }
+    ]
+  };
+
+  const renderHome = () => (
+    <div className="animate-fade-in">
+      {/* Hero Section */}
+      <div className="relative py-12 bg-blue-900 overflow-hidden flex flex-col items-center justify-center text-center">
+        {/* Abstract Background */}
+        <div className="absolute inset-0 opacity-10 flex flex-col">
+          <div className="flex-1 bg-blue-600"></div>
+          <div className="flex-1 bg-red-600"></div>
+        </div>
+        
+        <div className="relative z-10 px-6 flex flex-col items-center">
+          {/* Foto de Perfil */}
+          <div className="mb-4 relative">
+            <div className="w-28 h-28 rounded-full border-4 border-white shadow-2xl overflow-hidden bg-gray-200">
+              {profileData.photoUrl ? (
+                <img 
+                  src={profileData.photoUrl} 
+                  alt={profileData.name} 
+                  className="w-full h-full object-cover"
+                  onError={(e) => { e.target.src = 'https://via.placeholder.com/200?text=Foto'; }}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  <User size={48} />
+                </div>
+              )}
+            </div>
+            <div className="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full"></div>
+          </div>
+
+          <h1 className="text-white text-xs font-bold mb-1 opacity-80 uppercase tracking-[0.2em]">
+            {profileData.companyName}
+          </h1>
+          <h2 className="text-3xl font-extrabold text-white mb-3 drop-shadow-md tracking-tight">
+            {profileData.name}
+          </h2>
+          <div className="bg-red-600 text-white py-1 px-5 inline-block font-bold rounded-full shadow-lg text-xs uppercase tracking-widest border border-red-500">
+            {profileData.title}
+          </div>
+        </div>
+      </div>
+
+      {/* Services Section */}
+      <div className="p-6 -mt-6">
+        <div className="bg-white rounded-3xl shadow-2xl p-6 mb-8 border border-gray-100 relative z-20">
+          <h3 className="text-lg font-black text-gray-800 mb-6 flex items-center gap-2 uppercase tracking-tight">
+            <span className="w-1.5 h-5 bg-blue-600 rounded-full inline-block"></span>
+            Nuestros Servicios
+          </h3>
+          <div className="grid grid-cols-1 gap-4">
+            {profileData.services.map((service) => (
+              <button
+                key={service.id}
+                onClick={() => {
+                    window.scrollTo(0,0);
+                    setCurrentPage(service.id);
+                }}
+                className="flex items-center p-4 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-all border border-gray-100 group text-left active:scale-[0.98] shadow-sm"
+              >
+                <div className="bg-white p-3 rounded-xl shadow-sm text-blue-600 mr-4 group-hover:scale-110 transition-transform border border-gray-50">
+                  {service.icon}
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-800 group-hover:text-blue-700 leading-tight">{service.title}</h3>
+                  <p className="text-[10px] text-blue-500 font-bold uppercase mt-1 tracking-wider">Ver más detalles</p>
+                </div>
+                <ChevronRight size={18} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Home Contact CTA */}
+        <div className="bg-gradient-to-br from-blue-800 to-blue-950 rounded-3xl p-8 text-white text-center shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
+          <h3 className="text-2xl font-bold mb-2 tracking-tight">¿Iniciamos tu proceso?</h3>
+          <p className="mb-6 text-blue-200 text-sm leading-relaxed">Agenda tu consulta hoy con expertos en leyes migratorias.</p>
+          <a
+            href={profileData.whatsappLink}
+            className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transition-all active:scale-95 w-full justify-center text-lg"
+          >
+            <MessageCircle size={24} />
+            Contactar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderServicePage = (serviceId) => {
+    const service = profileData.services.find(s => s.id === serviceId);
+    if (!service) return null;
+
+    return (
+      <div className="animate-fade-in pb-20">
+        <div className="px-4 py-4">
+            <button 
+            onClick={() => setCurrentPage('home')}
+            className="flex items-center gap-2 text-blue-600 font-bold hover:bg-blue-50 px-4 py-2 rounded-xl transition-colors"
+            >
+            <ArrowLeft size={20} /> Volver
+            </button>
+        </div>
+
+        <div className="p-6">
+          <div className="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden">
+            <div className="bg-blue-600 p-10 text-white text-center relative">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                    <div className="absolute top-4 left-4">{service.icon}</div>
+                    <div className="absolute bottom-4 right-4">{service.icon}</div>
+                </div>
+                <div className="bg-white/20 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 backdrop-blur-md shadow-inner">
+                    {service.icon}
+                </div>
+                <h2 className="text-3xl font-black leading-tight tracking-tight">{service.title}</h2>
+            </div>
+
+            <div className="p-8">
+                <p className="text-gray-600 text-lg mb-8 leading-relaxed font-medium">
+                {service.description}
+                </p>
+
+                <div className="mb-10">
+                    <h3 className="text-[10px] uppercase tracking-[0.2em] font-black text-blue-600 mb-6 flex items-center gap-2">
+                        Puntos Clave
+                        <div className="flex-1 h-px bg-blue-100"></div>
+                    </h3>
+                    <ul className="space-y-5">
+                    {service.details.map((detail, idx) => (
+                        <li key={idx} className="flex items-start gap-4 group">
+                        <div className="bg-green-100 text-green-600 p-1.5 rounded-xl mt-0.5 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                            <CheckCircle size={16} />
+                        </div>
+                        <span className="text-gray-700 font-semibold leading-snug">{detail}</span>
+                        </li>
+                    ))}
+                    </ul>
+                </div>
+
+                <div className="bg-blue-50 rounded-3xl p-8 border border-blue-100 text-center">
+                    <p className="text-blue-900 font-bold mb-4">¿Dudas sobre este trámite?</p>
+                    <a
+                        href={profileData.whatsappLink}
+                        className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-2xl shadow-lg w-full justify-center transition-all hover:-translate-y-1 active:scale-95"
+                    >
+                        <MessageCircle size={24} />
+                        Consultar ahora
+                    </a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-100 font-sans text-gray-900">
+      <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative flex flex-col">
+        
+        {/* Navigation Top */}
+        <header className="bg-white/95 backdrop-blur-md sticky top-0 z-50 p-5 border-b flex justify-between items-center shadow-sm">
+          <div className="flex flex-col">
+            <span className="font-black text-blue-900 leading-none text-sm tracking-tighter uppercase">Cristopher Pacheco</span>
+            <span className="text-[9px] text-gray-400 font-black uppercase tracking-[0.15em] mt-1">Soluciones Migratorias SRL</span>
+          </div>
+          {currentPage !== 'home' && (
+            <button onClick={() => setCurrentPage('home')} className="p-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors">
+              <Home size={20} />
+            </button>
+          )}
+        </header>
+
+        <main className="flex-grow">
+          {currentPage === 'home' ? renderHome() : renderServicePage(currentPage)}
+        </main>
+
+        {/* Footer */}
+        <footer className="p-10 text-center bg-slate-900 text-white mt-auto">
+          <div className="mb-8 flex flex-col items-center">
+            <div className="w-12 h-1 bg-blue-500 mb-6 rounded-full"></div>
+            <p className="font-black text-2xl tracking-tight mb-1">{profileData.name}</p>
+            <p className="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em]">{profileData.title}</p>
+          </div>
+          
+          <div className="flex justify-center gap-4 mb-10">
+            <a href={`tel:${profileData.phone}`} className="w-14 h-14 flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-2xl transition-all border border-white/10 active:scale-90">
+              <Phone size={22} />
+            </a>
+            <a href={profileData.whatsappLink} className="w-14 h-14 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded-2xl transition-all shadow-lg shadow-green-900/20 active:scale-90">
+              <MessageCircle size={22} />
+            </a>
+          </div>
+          
+          <div className="space-y-2 opacity-40">
+            <p className="text-[9px] font-bold uppercase tracking-widest leading-none">{profileData.companyName}</p>
+            <p className="text-[8px] font-medium uppercase tracking-[0.3em]">República Dominicana • 2024</p>
+          </div>
+        </footer>
+      </div>
+
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default App;
